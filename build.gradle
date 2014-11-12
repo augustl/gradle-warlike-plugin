@@ -6,7 +6,7 @@ repositories {
 }
 
 group = 'com.augustl'
-version = '0.1.0-SNAPSHOT'
+version = '0.1.3'
 
 dependencies {
     compile gradleApi()
@@ -17,4 +17,24 @@ dependencies {
     compile 'org.eclipse.jetty:jetty-webapp:9.3.0.M0'
     compile 'org.eclipse.jetty:jetty-annotations:9.3.0.M0'
     compile "org.springframework:springloaded:1.2.0.RELEASE"
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = "sources"
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives jar
+    archives sourcesJar
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(id: "bintray-augustl-maven-gradle-warlike-plugin",url: "https://api.bintray.com/maven/augustl/maven/gradle-warlike-plugin") {
+                authentication(userName: project.properties["bintray.username"], password: project.properties["bintray.apikey"])
+            }
+        }
+    }
 }
