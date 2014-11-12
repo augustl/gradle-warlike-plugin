@@ -52,3 +52,9 @@ runWarlike {
 Mirroring the "war" plugin, the folder src/main/webapp will be included as part of the container setup.
 
 For example, add the file src/main/webapp/WEB-INF/web.xml to configure the container via the traditinal web.xml format.
+
+## Internals
+
+springloaded is used for hot code reloading.
+
+Jetty is used for the embedded container.
