@@ -7,7 +7,7 @@ Auto-reloading WAR-like environment for local development.
 ```groovy
 buildscript {
     repositories {
-        mavenCentral()
+        jcenter()
     }
 
     dependencies {
