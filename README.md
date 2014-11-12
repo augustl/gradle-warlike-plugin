@@ -1,10 +1,14 @@
 # gradle-warlike-plugin
 
-Developer companion for users of the "war" plugin.
+Gives you auto reloading of code when developing WAR based web apps with Gradle.
 
-All you have to do is to install the plugin, and create a Gradle project conforming to the "war" plugin conventions.
+The plugin has one task:
 
-gradle-warlike-plugin sets up a local development environment with hot code reloading, and uses Jetty internally to mirror a Jetty WAR container environment.
+`gradle runWarlike`
+
+This starts a web server that assumes a WAR-like setup, the same as Gradle's built in "war" plugin.
+
+Make your web app just the way you would normally with the "war" plugin, and gradle-warlike-plugin will auto detect everything just like a real webapp container, and auto reload the code when you recompile it.
 
 ## Installing
 
