@@ -11,6 +11,7 @@ import org.gradle.api.plugins.ApplicationPlugin
 import org.gradle.api.plugins.GroovyPlugin
 import org.gradle.api.plugins.JavaPluginConvention
 import org.gradle.api.plugins.WarPlugin
+import org.gradle.api.tasks.Copy
 import org.gradle.api.tasks.JavaExec
 import org.gradle.api.tasks.SourceSet
 import org.gradle.plugins.ide.idea.IdeaPlugin
@@ -30,8 +31,12 @@ class WarlikePlugin implements Plugin<Project> {
 
         SourceSet mainSourceSet = convention.getSourceSets().getByName(SourceSet.MAIN_SOURCE_SET_NAME)
 
+        Copy copyWebappFiles = project.tasks.create("copyWebappFiles", Copy)
+        copyWebappFiles.from("src/main/webapp")
+        copyWebappFiles.into("build/main-web")
+
         Task run = project.tasks.create("runWarlike", WarlikeTask)
-        run.dependsOn("classes")
+        run.dependsOn("classes", "copyWebappFiles")
         run.description = "Runs an auto-reloading WAR container like environment"
         run.classpath = mainSourceSet.runtimeClasspath
         run.classpath += project.buildscript.configurations.classpath

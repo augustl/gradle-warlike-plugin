@@ -37,3 +37,10 @@ runWarlike {
     <td>The port number to start the local web server at.</td>
   </tr>
 </table>
+
+
+## Webapp files
+
+Mirroring the "war" plugin, the folder src/main/webapp will be included as part of the container setup.
+
+For example, add the file src/main/webapp/WEB-INF/web.xml to configure the container via the traditinal web.xml format.
