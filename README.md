@@ -1,6 +1,10 @@
 # gradle-warlike-plugin
 
-Auto-reloading WAR-like environment for local development.
+Developer companion for users of the "war" plugin.
+
+All you have to do is to install the plugin, and create a Gradle project conforming to the "war" plugin conventions.
+
+gradle-warlike-plugin sets up a local development environment with hot code reloading, and uses Jetty internally to mirror a Jetty WAR container environment.
 
 ## Installing
 
