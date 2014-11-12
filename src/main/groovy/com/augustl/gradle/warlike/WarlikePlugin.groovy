@@ -21,7 +21,6 @@ class WarlikePlugin implements Plugin<Project> {
     @Override
     void apply(Project project) {
         project.plugins.apply(GroovyPlugin)
-
         JavaPluginConvention convention = project.getConvention().getPlugin(JavaPluginConvention.class)
 
         convention.getSourceSets().main {
@@ -31,12 +30,11 @@ class WarlikePlugin implements Plugin<Project> {
 
         SourceSet mainSourceSet = convention.getSourceSets().getByName(SourceSet.MAIN_SOURCE_SET_NAME)
 
-        Task run = project.tasks.create("runWarlike", JavaExec)
+        Task run = project.tasks.create("runWarlike", WarlikeTask)
         run.dependsOn("classes")
         run.description = "Runs an auto-reloading WAR container like environment"
         run.classpath = mainSourceSet.runtimeClasspath
         run.classpath += project.buildscript.configurations.classpath
-        run.args = [9085]
         run.main = "com.augustl.gradle.warlike.WarlikeServer"
         String springloadedJar = project.buildscript.configurations.classpath.find { it.name.startsWith("springloaded")}
         run.jvmArgs = ["-javaagent:${springloadedJar}", "-noverify"]
