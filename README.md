@@ -78,3 +78,8 @@ Note that web.xml is not required. We implement Servlet 3.0 annotation based web
 springloaded is used for hot code reloading.
 
 Jetty is used for the embedded container.
+
+## Todo
+
+* Make more stuff configurable. Perhaps the IP to bind to, now we just use Jetty defaults.
+* [your feature request here]
