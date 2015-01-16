@@ -35,13 +35,13 @@ class WarlikePlugin implements Plugin<Project> {
         copyWebappFiles.from("src/main/webapp")
         copyWebappFiles.into("build/main-web")
 
-        Task run = project.tasks.create("runWarlike", WarlikeTask)
-        run.dependsOn("classes", "copyWebappFiles")
-        run.description = "Runs an auto-reloading WAR container like environment"
-        run.classpath = mainSourceSet.runtimeClasspath
-        run.classpath += project.buildscript.configurations.classpath
-        run.main = "com.augustl.gradle.warlike.WarlikeServer"
+        Task runWarlike = project.tasks.create("runWarlike", WarlikeTask)
+        runWarlike.dependsOn("classes", "copyWebappFiles")
+        runWarlike.description = "Runs an auto-reloading WAR container like environment"
+        runWarlike.classpath = mainSourceSet.runtimeClasspath
+        runWarlike.classpath += project.buildscript.configurations.classpath
+        runWarlike.main = "com.augustl.gradle.warlike.WarlikeServer"
         String springloadedJar = project.buildscript.configurations.classpath.find { it.name.startsWith("springloaded")}
-        run.jvmArgs = ["-javaagent:${springloadedJar}", "-noverify"]
+        runWarlike.jvmArgs = ["-javaagent:${springloadedJar}", "-noverify"]
     }
 }
