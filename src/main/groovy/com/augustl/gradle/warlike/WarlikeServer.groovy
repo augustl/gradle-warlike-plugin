@@ -36,7 +36,7 @@ class WarlikeServer {
         resourceHandler.setResourceBase("src/main/webapp")
 
         HandlerList handlers = new HandlerList();
-        handlers.setHandlers([resourceHandler, context] as Handler[])
+        handlers.setHandlers([context, resourceHandler] as Handler[])
         server.setHandler(handlers)
         server.start()
     }
