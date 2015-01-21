@@ -31,12 +31,8 @@ class WarlikePlugin implements Plugin<Project> {
 
         SourceSet mainSourceSet = convention.getSourceSets().getByName(SourceSet.MAIN_SOURCE_SET_NAME)
 
-        Copy copyWebappFiles = project.tasks.create("copyWebappFiles", Copy)
-        copyWebappFiles.from("src/main/webapp")
-        copyWebappFiles.into("build/main-web")
-
         Task runWarlike = project.tasks.create("runWarlike", WarlikeTask)
-        runWarlike.dependsOn("classes", "copyWebappFiles")
+        runWarlike.dependsOn("classes")
         runWarlike.description = "Runs an auto-reloading WAR container like environment"
         runWarlike.classpath = mainSourceSet.runtimeClasspath
         runWarlike.classpath += project.buildscript.configurations.classpath
