@@ -35,6 +35,10 @@ To start the local server with hot code reloading, run the task provided by the 
 
 This task will start the server.
 
+## Live resources
+
+The plugin configures the classpath so that src/main/resources (and whatever you put in sourceSets.main.resources.srcDirs) is available, and build/resources/main is not. That means you can edit your resources in src/main/resources and se the changes immediately, instead of having to rebuild the project to make your changes visible. This is particularly useful if you have things like javascripts and templates on the classpath.
+
 ## Manually reloading server instance
 
 **NOT IMPLEMENTED YET**
