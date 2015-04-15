@@ -21,7 +21,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.augustl:gradle-warlike-plugin:0.1.4"
+        classpath "com.augustl:gradle-warlike-plugin:0.3.0"
     }
 }
 apply plugin: 'com.augustl.warlike'
