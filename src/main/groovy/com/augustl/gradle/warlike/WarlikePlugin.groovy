@@ -1,6 +1,7 @@
 package com.augustl.gradle.warlike
 
 import org.gradle.api.Task
+import org.gradle.api.internal.file.AbstractFileCollection
 import org.gradle.api.internal.file.FileResolver
 import org.gradle.api.Action
 import org.gradle.api.Plugin
@@ -26,7 +27,6 @@ class WarlikePlugin implements Plugin<Project> {
 
         convention.getSourceSets().main {
             output.classesDir = "build/main-web/WEB-INF/classes"
-            output.resourcesDir = "build/main-web/WEB-INF/resources"
         }
 
         SourceSet mainSourceSet = convention.getSourceSets().getByName(SourceSet.MAIN_SOURCE_SET_NAME)
@@ -34,7 +34,18 @@ class WarlikePlugin implements Plugin<Project> {
         Task runWarlike = project.tasks.create("runWarlike", WarlikeTask)
         runWarlike.dependsOn("classes")
         runWarlike.description = "Runs an auto-reloading WAR container like environment"
-        runWarlike.classpath = mainSourceSet.runtimeClasspath
+        runWarlike.classpath = mainSourceSet.runtimeClasspath.minus(project.files(mainSourceSet.getOutput().resourcesDir)).plus(new AbstractFileCollection() {
+            @Override
+            String getDisplayName() {
+                "runWarlike deferred resources collection"
+            }
+
+            @Override
+            Set<File> getFiles() {
+                return mainSourceSet.resources.srcDirs
+            }
+        })
+
         runWarlike.classpath += project.buildscript.configurations.classpath
         runWarlike.main = "com.augustl.gradle.warlike.WarlikeServer"
         String springloadedJar = project.buildscript.configurations.classpath.find { it.name.startsWith("springloaded")}
