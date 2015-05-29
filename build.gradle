@@ -12,10 +12,10 @@ dependencies {
     compile gradleApi()
     compile localGroovy()
 
-    compile 'org.eclipse.jetty:jetty-server:9.3.0.M0'
-    compile 'org.eclipse.jetty:jetty-servlet:9.3.0.M0'
-    compile 'org.eclipse.jetty:jetty-webapp:9.3.0.M0'
-    compile 'org.eclipse.jetty:jetty-annotations:9.3.0.M0'
+    compile 'org.eclipse.jetty:jetty-server:9.2.10.v20150310'
+    compile 'org.eclipse.jetty:jetty-servlet:9.2.10.v20150310'
+    compile 'org.eclipse.jetty:jetty-webapp:9.2.10.v20150310'
+    compile 'org.eclipse.jetty:jetty-annotations:9.2.10.v20150310'
     compile "org.springframework:springloaded:1.2.0.RELEASE"
 }
 
