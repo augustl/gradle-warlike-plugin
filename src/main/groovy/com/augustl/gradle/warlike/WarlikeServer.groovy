@@ -13,6 +13,8 @@ import org.eclipse.jetty.webapp.MetaInfConfiguration
 import org.eclipse.jetty.webapp.WebAppContext
 import org.eclipse.jetty.webapp.WebInfConfiguration
 import org.eclipse.jetty.webapp.WebXmlConfiguration
+import org.eclipse.jetty.websocket.jsr356.server.ServerContainer
+import org.eclipse.jetty.websocket.server.WebSocketUpgradeFilter
 
 class WarlikeServer {
     public static void main(String[] args) {
@@ -32,6 +34,11 @@ class WarlikeServer {
         ] as Configuration[])
         context.setContextPath("/")
         context.setParentLoaderPriority(true)
+
+        WebSocketUpgradeFilter filter = WebSocketUpgradeFilter.configureContext(context)
+        ServerContainer jettyContainer = new ServerContainer(filter, filter.getFactory(), server.getThreadPool())
+        context.addBean(jettyContainer)
+        context.setAttribute(javax.websocket.server.ServerContainer.class.getName(), jettyContainer)
 
         HandlerList handlers = new HandlerList();
         handlers.setHandlers([context] as Handler[])
