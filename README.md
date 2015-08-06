@@ -1,6 +1,12 @@
 # gradle-warlike-plugin
 
-A local webserver with auto reloading of code, when developing WAR based web apps with Gradle.
+When using the "war" plugin to make webapps, use gradle-warlike-plugin for a local server with hot reloading of classes.
+
+Uses an embedded jetty set up to emulate a WAR environment.
+
+Uses springloaded for hot reloading of classes.
+
+## Running
 
 The plugin has one task:
 
