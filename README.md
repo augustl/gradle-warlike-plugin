@@ -6,16 +6,6 @@ Uses an embedded jetty set up to emulate a WAR environment.
 
 Uses springloaded for hot reloading of classes.
 
-## Running
-
-The plugin has one task:
-
-`gradle runWarlike`
-
-This starts a web server that assumes a WAR-like setup, the same as Gradle's built in "war" plugin.
-
-Make your web app just the way you would normally with the "war" plugin, and gradle-warlike-plugin will auto detect everything just like a real webapp container, and auto reload the code when you recompile it.
-
 ## Installing
 
 Install as any Gradle plugin. The package is deployed to bintray/jcenter.
@@ -82,12 +72,6 @@ This plugin follows the conventions of the "war" plugin. This is where you'll pu
 `src/main/webapp/WEB-INF/web.xml`
 
 Note that web.xml is not required. We implement Servlet 3.0 annotation based web listeners as well.
-
-## Internals
-
-springloaded is used for hot code reloading.
-
-Jetty is used for the embedded container.
 
 ## Todo
 
