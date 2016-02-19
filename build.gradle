@@ -6,7 +6,7 @@ repositories {
 }
 
 group = 'com.augustl'
-version = '0.3.2'
+version = '0.3.3'
 
 dependencies {
     compile gradleApi()
