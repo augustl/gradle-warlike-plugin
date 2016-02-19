@@ -7,6 +7,8 @@ repositories {
 
 group = 'com.augustl'
 version = '0.3.3'
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
 
 dependencies {
     compile gradleApi()
