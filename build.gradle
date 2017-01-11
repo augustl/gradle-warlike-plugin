@@ -6,7 +6,7 @@ repositories {
 }
 
 group = 'com.augustl'
-version = '0.3.4'
+version = '0.3.5'
 sourceCompatibility = '1.7'
 targetCompatibility = '1.7'
 
