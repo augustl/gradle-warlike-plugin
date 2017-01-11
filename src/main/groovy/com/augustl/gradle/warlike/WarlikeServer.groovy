@@ -18,7 +18,7 @@ import org.eclipse.jetty.websocket.server.WebSocketUpgradeFilter
 
 class WarlikeServer {
     public static void main(String[] args) {
-        Server server = new Server(new Integer(args[0]))
+        Server server = new Server(new InetSocketAddress(new InetSocketAddress(0).getAddress(), new Integer(args[0])))
 
         WebAppContext context = new WebAppContext()
         ResourceCollection resources = new ResourceCollection(["build/main-web", "src/main/webapp"] as String[])
